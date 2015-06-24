@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
+		{% block title %}GitMatch{% endblock %}
+		{% block header %}GitMatch{% endblock %}
 		{% block body %}
-		<h1>Adder</h1>
+		
 		<br>
 		<form role="form" method="post" onsubmit="return false;">
 			<div class="form-group">
-				<input type="text" class="form-control" name="number-one" placeholder="Enter a number" required>		
-				<input type="text" class="form-control" name="number-two" placeholder="Enter another number" required>
+				<input type="text" class="form-control" name="location" placeholder="Enter a location" required>		
+				<input type="text" class="form-control" name="language" placeholder="Enter a language" required>
 			</div>
-			<button type="submit" class="btn btn-default">Submit</button>
+			<button type="submit" class="btn btn-default">Find a Developer</button>
 		</form>
 		<br>
-		<p id="calc-value">The Calculated value is <span id="results"></span>
+		<div id="results"></div>
 		{% endblock %}
