@@ -1,5 +1,7 @@
 $(document).ready(function () {
 	console.log("readayyy");
+
+	$('#try-again').hide();
 	$('form').on("submit", function() {
 		console.log("The form has been submitted");
 		var valueOne = $("input[name='location']").val();
@@ -12,17 +14,28 @@ $(document).ready(function () {
 			url: "/",
 			data: { first: valueOne, second: valueTwo},
 			success: function(results) {
-				console.log(results);
-				results.items.forEach(function(user) {
-					var img = '<img src="' + user.avatar_url + '" width="200" height="200">'; 
+				if (results.items.length > 0) {
+					$('input').hide();
+					$('#try-again').show();
+					
+					$('#results').html("");
+					results.items.forEach(function(user) {
+					var img = '<img src="' + user.avatar_url + '" class="avatar">'; 
 					$('#results').append('<br>');			
 					$('#results').append(img);
 					$('#results').append('<br><a href="' + user.html_url + '">' +
 					user.login + '</a>')
 					$('#results').append('<br><br>');
 				});
+				} else {
+					// clear results
+					$('#results').html("");
+					$('#results').html("<p>No results found.</p>");
+					
+				}				
 				
-				$('input').val("");
+				//$('input').val("");
+				$("input[name='location']").focus();
 				
 			},
 			error: function(error) {
@@ -30,5 +43,10 @@ $(document).ready(function () {
 				console.log(error)
 			}
 		});
+	});
+	$('#try-again').on("click", function() {
+		$('input').val('').show();
+		$('#try-again').hide();
+		$('#results').html('');
 	});
 });

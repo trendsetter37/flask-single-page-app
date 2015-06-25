@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 		{% block title %}GitMatch{% endblock %}
-		{% block header %}GitMatch{% endblock %}
+		{% block header %}GitMatched{% endblock %}
 		{% block body %}
 		
 		<br>
@@ -9,7 +9,8 @@
 				<input type="text" class="form-control" name="location" placeholder="Enter a location" required>		
 				<input type="text" class="form-control" name="language" placeholder="Enter a language" required>
 			</div>
-			<button type="submit" class="btn btn-default">Find a Developer</button>
+			<button type="submit" class="btn btn-primary">Find a Developer</button>
+			<button type="submit" class="btn btn-secondary" id="try-again">Try a different location</button>
 		</form>
 		<br>
 		<div id="results"></div>

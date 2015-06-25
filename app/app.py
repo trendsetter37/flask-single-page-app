@@ -31,9 +31,14 @@ def home():
 		# api call
 		search_params = "q=location:{}+language:{}".format(value_one, value_two)
 		url = GITHUB_URI + search_params
-		response_dict = requests.get(url).json()
+
+		try:
+			response_dict = requests.get(url).json()
+			return jsonify(response_dict)
+		except:
+			return jsonify({"error": "Error message"}), 500
 		
-		return jsonify(response_dict)
+		
 	return render_template('index.html')
 
 if __name__ == '__main__':
